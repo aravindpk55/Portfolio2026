@@ -1,0 +1,62 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Palette: a cool lab-notebook light theme and a deep navy dark theme.
+   Each project category has its own colour, used consistently in the
+   embedding map, tags and charts. */
+:root {
+  --paper: 244 246 248;     /* #F4F6F8 */
+  --surface: 255 255 255;
+  --ink: 22 33 58;          /* #16213A */
+  --muted: 90 100 120;      /* #5A6478 */
+  --line: 220 225 232;      /* #DCE1E8 */
+  --signal: 47 91 234;      /* #2F5BEA cobalt */
+  --amber: 217 138 30;
+  --cat-ml: 14 143 126;     /* teal */
+  --cat-llm: 107 78 230;    /* violet */
+  --cat-rag: 47 91 234;     /* cobalt */
+  --cat-analysis: 217 138 30; /* amber */
+}
+
+.dark {
+  --paper: 15 23 40;        /* #0F1728 */
+  --surface: 22 32 58;
+  --ink: 231 235 243;
+  --muted: 154 164 184;
+  --line: 38 50 77;
+  --signal: 110 144 255;
+  --amber: 240 170 70;
+  --cat-ml: 52 196 172;
+  --cat-llm: 155 132 255;
+  --cat-rag: 110 144 255;
+  --cat-analysis: 240 170 70;
+}
+
+html { scroll-behavior: smooth; }
+body {
+  @apply bg-paper text-ink font-sans antialiased;
+  font-size: 1.0625rem;
+  line-height: 1.6;
+}
+
+:focus-visible {
+  outline: 2px solid rgb(var(--signal));
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+}
+
+@layer components {
+  .wrap { @apply mx-auto w-full max-w-6xl px-5 sm:px-8; }
+  .section { @apply py-20 sm:py-28; }
+  .h2 { @apply font-display text-3xl sm:text-4xl font-semibold tracking-tight; }
+  .btn { @apply inline-flex items-center gap-2 rounded-full px-5 py-2.5 text-[0.95rem] font-medium transition-colors; }
+  .btn-primary { @apply btn bg-ink text-paper hover:bg-signal; }
+  .btn-ghost { @apply btn border border-line hover:border-ink; }
+  .tag { @apply inline-flex items-center gap-1.5 rounded-full border border-line px-2.5 py-0.5 text-sm text-muted; }
+}
